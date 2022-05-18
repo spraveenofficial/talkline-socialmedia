@@ -1,3 +1,306 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Importing Poppins Font from Google Font. */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap");
+
+/* CSS reset */
+
+:root {
+  --bg-color: #1a202c;
+  --white: white;
+  --card-bg: #272a31;
+  --card-text: rgb(182, 179, 179);
+  --black-text: black;
+  --green-color: #219c21;
+  --primary-color: #4f46e5;
+}
+
+body,
+div,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+pre,
+form,
+fieldset,
+input,
+textarea,
+p,
+blockquote,
+th,
+td {
+  margin: 0;
+  padding: 0;
+}
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+  color: var(--bg-color);
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+fieldset,
+img {
+  border: 0;
+  object-fit: cover;
+}
+address,
+caption,
+cite,
+code,
+dfn,
+th,
+var {
+  font-style: normal;
+  font-weight: normal;
+}
+ol,
+ul {
+  list-style: none;
+}
+caption,
+th {
+  text-align: left;
+}
+
+q:before,
+q:after {
+  content: "";
+}
+abbr,
+acronym {
+  border: 0;
+}
+
+* {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+a {
+  color: var(--bg-color);
+  text-decoration: none;
+}
+
+/* Utilities Class */
+.pointer {
+  cursor: pointer;
+}
+.text-center {
+  text-align: center;
+}
+.full-width {
+  width: 100%;
+}
+.mt-10 {
+  margin-top: 0.625rem;
+}
+.mb-10 {
+  margin-bottom: 0.625rem;
+}
+.m-10 {
+  margin: 0.625rem 0;
+}
+.mt-20 {
+  margin-top: 1.25rem;
+}
+.inherit-font {
+  font-family: inherit;
+}
+.align-center {
+  align-items: center;
+}
+.flex {
+  display: flex;
+}
+.justify-between {
+  justify-content: space-between;
+}
+.justify-last {
+  justify-content: flex-end;
+}
+.gap10 {
+  gap: 10px;
+}
+.border-bottom {
+  border-bottom: 1px solid var(--white);
+}
+.pb-10 {
+  padding-bottom: 0.625rem;
+}
+
+.active {
+  background: var(--primary-color);
+  font-weight: bold;
+  color: var(--white);
+}
+
+/* Components which is not possible by tailwind */
+.snackbars {
+  background: rgb(33, 184, 33);
+  width: 25rem;
+  color: var(--white);
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  padding: 0.8rem;
+  border-radius: 0.315rem;
+  position: fixed;
+  bottom: 5%;
+  left: 50%;
+  transform: translate(-50%);
+  z-index: 2;
+  display: flex;
+}
+
+/* Scrollbar */
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--primary-color);
+  border-radius: 0.625rem;
+}
+
+/* Disabling Counter for Input Tag which type will be Number */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.pulses {
+  animation: pulse 1.4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+
+/* Make .activeContainer scrollble without scrollbar */
+.activeContainer {
+  overflow-y: scroll;
+  width: 100%;
+}
+.activeContainer::-webkit-scrollbar {
+  display: none;
+}
+
+.toggle-checkbox:checked {
+  right: 0;
+  border-color: var(--primary-color);
+}
+.toggle-checkbox:checked + .toggle-label {
+  background-color: var(--primary-color);
+}
+
+.window {
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  margin: 20px 0px;
+}
+
+.window .tabs {
+  flex-grow: 1;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  flex-wrap: nowrap;
+  width: 100%;
+}
+
+.window main {
+  /* flex-grow: 1; */
+  user-select: none;
+  height: 100%;
+}
+
+.window ul,
+.window li {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-family: inherit;
+  font-weight: 500;
+  font-size: 14px;
+  text-align: center;
+  align-items: center;
+}
+
+.window div ul li {
+  display: flex;
+  justify-content: center;
+}
+
+.window ul {
+  width: 100%;
+  gap: 10px;
+}
+
+.window li {
+  border-radius: 5px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  width: 100%;
+  padding: 10px 15px;
+  position: relative;
+  cursor: pointer;
+  height: 60px;
+  position: relative;
+  user-select: none;
+}
+
+.window li.selected {
+  background: var(--primary-color);
+  height: 100%;
+  color: #fff;
+  width: 100%;
+}
+
+.badges {
+  background-color: #f89406;
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  font-size: 40px;
+  font-weight: 900;
+}
+.profile-left {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.window button {
+  margin-bottom: 0.625rem;
+}
+
+.fix-chat-width {
+  width: 53%;
+}
