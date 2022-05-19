@@ -7,14 +7,23 @@ import {
 } from "../../Components";
 import { Link } from "react-router-dom";
 import { useFormik } from "formik";
+import { useDispatch, useSelector } from "react-redux";
+import { userLogin } from "../../Redux/Actions";
 export function EmailPassword({ onNext }) {
+  const dispatch = useDispatch();
+  const { loading, user, success, message } = useSelector(
+    (state) => state.login
+  );
   const formik = useFormik({
     initialValues: {
-      email: "",
-      password: "",
+      email: user.email,
+      password: user.password,
     },
     onSubmit: async (values) => {
-      onNext();
+      const response = await dispatch(userLogin(values));
+      if (response) {
+        return onNext();
+      }
     },
     validate: (values) => {
       const regularExpression = new RegExp(
@@ -75,7 +84,12 @@ export function EmailPassword({ onNext }) {
           placeholder="Enter Password"
         />
       </div>
-      <Button type="submit">Login</Button>
+      <Button loading={loading} type="submit">
+        {loading ? "Sending otp..." : "Login"}
+      </Button>
+      {!loading && message && !success && (
+        <Toast message={message} success={success} />
+      )}
       <div className="flex justify-between mt-15">
         <Link to="/signup">
           <span className="text-sm ml-2 hover:text-blue-500 cursor-pointer">

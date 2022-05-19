@@ -1,14 +1,23 @@
 import { useState } from "react";
 import { Button, Toast } from "../../Components";
 import { motion } from "framer-motion";
+import { useDispatch, useSelector } from "react-redux";
+import { verifyOtp, verifyUser } from "../../Redux/Actions";
 import { animation } from "../../Utils/animation";
+import { useLocation, useNavigate } from "react-router-dom";
 export function Otp({ onBack }) {
+  const location = useLocation();
+  const navigate = useNavigate();
+  let from = location.state?.from?.pathname || "/";
+  const dispatch = useDispatch();
   const [otp, setOtp] = useState({
     1: "",
     2: "",
     3: "",
     4: "",
   });
+  const { user } = useSelector((state) => state.login);
+  const { loading, success, message } = useSelector((state) => state.verifyOtp);
   const handleOtpChange = (e) => {
     const { name, value } = e.target;
     setOtp((prev) => ({
@@ -19,7 +28,12 @@ export function Otp({ onBack }) {
   const enTeredOtp = Object.values(otp).join("");
 
   const handleVerifyOtp = async () => {
-    console.log(enTeredOtp);
+    const response = await dispatch(
+      verifyOtp({ otp: enTeredOtp, hash: user.hash, email: user.email })
+    );
+    if (response) {
+      return dispatch(verifyUser()) && navigate(from, { replace: true });
+    }
   };
   return (
     <motion.div
@@ -77,12 +91,20 @@ export function Otp({ onBack }) {
                 name="4"
               />
             </div>
+            {!loading && message && (
+              <Toast
+                message={success ? "Redirecting.." : message}
+                success={success}
+              />
+            )}
             <p className="mb-10">You are just one step ahead.</p>
             <button className="resend">
               Resend OTP
               <i className="fa fa-caret-right ml-2"></i>
             </button>
-            <Button onClick={() => handleVerifyOtp()}>Verify</Button>
+            <Button loading={loading} onClick={() => handleVerifyOtp()}>
+              {loading ? "Verifying..." : "Verify"}
+            </Button>
           </div>
         </div>
       </div>

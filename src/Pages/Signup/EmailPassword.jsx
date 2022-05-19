@@ -8,15 +8,24 @@ import {
 } from "../../Components";
 import { Link } from "react-router-dom";
 import { useFormik } from "formik";
+import { useDispatch, useSelector } from "react-redux";
+import { signup } from "../../Redux/Actions";
 export function EmailPassword({ onNext }) {
+  const dispatch = useDispatch();
+  const { loading, user, success, message } = useSelector(
+    (state) => state.signup
+  );
   const formik = useFormik({
     initialValues: {
-      name: "",
-      email: "",
-      password: "",
+      name: user.name,
+      email: user.email,
+      password: user.password,
     },
     onSubmit: async (values) => {
-      return onNext();
+      const data = await dispatch(signup(values));
+      if (data) {
+        return onNext();
+      }
     },
     validate: (values) => {
       const regularExpression = new RegExp(
@@ -95,7 +104,10 @@ export function EmailPassword({ onNext }) {
           placeholder="Enter Password"
         />
       </div>
-      <Button type="submit">Signup</Button>
+      {message && !success && <Toast message={message} success={success} />}
+      <Button loading={loading} type="submit">
+        {loading ? "Sending otp.." : "Signup"}
+      </Button>
       <Link to="/login">
         <span className="text-sm ml-2 hover:text-blue-500 cursor-pointer">
           Already have an Account ?
