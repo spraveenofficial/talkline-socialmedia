@@ -6,6 +6,7 @@ import {
   Post,
   Profile,
   UserProfile,
+  Setting,
 } from "../../Pages";
 
 const HomeComponent = () => (
@@ -62,12 +63,20 @@ const UserProfileComponent = () => (
     <RightSidebar />
   </div>
 );
+const SettingComponent = () => (
+  <div className="flex relative h-full mobile:flex-col">
+    <Sidebar />
+    <Setting />
+    <RightSidebar />
+  </div>
+);
 export {
   BookMarkComponent,
   HomeComponent,
   ExploreComponent,
   NotificationComponent,
   PostComponent,
+  SettingComponent,
   ProfileComponent,
   UserProfileComponent,
 };

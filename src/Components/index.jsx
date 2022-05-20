@@ -21,6 +21,7 @@ export {
   PostComponent,
   ProfileComponent,
   UserProfileComponent,
+  SettingComponent,
 } from "./Shared/RenderFragment";
 export {
   HomeIcon,

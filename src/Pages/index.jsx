@@ -8,3 +8,4 @@ export { Bookmark } from "./Bookmarks";
 export { Post } from "./Post";
 export { Profile } from "./Profile";
 export { UserProfile } from "./Profile/other-profile";
+export { Setting } from "./Settings";
