@@ -1,7 +1,14 @@
 import "./index.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Signup, Login, Error } from "./Pages";
-import { Navbar, HomeComponent } from "./Components";
+import {
+  Navbar,
+  HomeComponent,
+  ExploreComponent,
+  NotificationComponent,
+  BookMarkComponent,
+  PostComponent,
+} from "./Components";
 import { GuestRoutes, ProtectedRoutes } from "./Utils/routes";
 import { verifyUser } from "./Redux/Actions";
 import { useEffect } from "react";
@@ -31,8 +38,13 @@ function App() {
     <Router>
       <Navbar />
       <Routes>
+        <Route path="*" element={<Error />} />
         <Route element={<ProtectedRoutes />}>
           <Route path="/" element={<HomeComponent />} />
+          <Route path="explore" element={<ExploreComponent />} />
+          <Route path="notification" element={<NotificationComponent />} />
+          <Route path="bookmarks" element={<BookMarkComponent />} />
+          <Route path="post/:postId" element={<PostComponent />} />
         </Route>
         <Route element={<GuestRoutes />}>
           <Route path="signup" element={<Signup />} />

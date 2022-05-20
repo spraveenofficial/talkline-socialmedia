@@ -29,3 +29,5 @@ export {
   addComment,
   deletePost,
 } from "./post-actions";
+
+export { fetchNotification, markAsSeen } from "./notification-actions";
