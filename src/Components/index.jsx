@@ -11,12 +11,16 @@ export { Promotion } from "./Shared/Promotion";
 export { Feed } from "./Shared/Feed";
 export { EachPost } from "./EachPosts";
 export { ExploreCard } from "./ExploreCard";
+export { ProfileButton } from "./Shared/User-Profile";
+
 export {
   HomeComponent,
   ExploreComponent,
   NotificationComponent,
   BookMarkComponent,
   PostComponent,
+  ProfileComponent,
+  UserProfileComponent,
 } from "./Shared/RenderFragment";
 export {
   HomeIcon,
