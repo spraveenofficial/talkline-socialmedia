@@ -1,5 +1,13 @@
 import { CreatePost, RightSidebar, Sidebar } from "..";
-import { Explore, Notification, Bookmark, Post } from "../../Pages";
+import {
+  Explore,
+  Notification,
+  Bookmark,
+  Post,
+  Profile,
+  UserProfile,
+  Setting,
+} from "../../Pages";
 
 const HomeComponent = () => (
   <div className="flex relative h-full mobile:flex-col">
@@ -40,11 +48,35 @@ const PostComponent = () => (
     <RightSidebar />
   </div>
 );
+const ProfileComponent = () => (
+  <div className="flex relative h-full mobile:flex-col">
+    <Sidebar />
+    <Profile />
+    <RightSidebar />
+  </div>
+);
 
+const UserProfileComponent = () => (
+  <div className="flex relative h-full mobile:flex-col">
+    <Sidebar />
+    <UserProfile />
+    <RightSidebar />
+  </div>
+);
+const SettingComponent = () => (
+  <div className="flex relative h-full mobile:flex-col">
+    <Sidebar />
+    <Setting />
+    <RightSidebar />
+  </div>
+);
 export {
   BookMarkComponent,
   HomeComponent,
   ExploreComponent,
   NotificationComponent,
   PostComponent,
+  SettingComponent,
+  ProfileComponent,
+  UserProfileComponent,
 };

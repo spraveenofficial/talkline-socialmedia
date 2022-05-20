@@ -8,6 +8,9 @@ import {
   NotificationComponent,
   BookMarkComponent,
   PostComponent,
+  ProfileComponent,
+  UserProfileComponent,
+  SettingComponent,
 } from "./Components";
 import { GuestRoutes, ProtectedRoutes } from "./Utils/routes";
 import { verifyUser } from "./Redux/Actions";
@@ -45,6 +48,9 @@ function App() {
           <Route path="notification" element={<NotificationComponent />} />
           <Route path="bookmarks" element={<BookMarkComponent />} />
           <Route path="post/:postId" element={<PostComponent />} />
+          <Route path="profile" element={<ProfileComponent />} />
+          <Route path="/user/:id" element={<UserProfileComponent />} />
+          <Route path="setting" element={<SettingComponent />} />
         </Route>
         <Route element={<GuestRoutes />}>
           <Route path="signup" element={<Signup />} />
