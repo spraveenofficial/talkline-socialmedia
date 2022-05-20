@@ -22,7 +22,9 @@ export {
   ProfileComponent,
   UserProfileComponent,
   SettingComponent,
+  MessageComponent,
 } from "./Shared/RenderFragment";
+
 export {
   HomeIcon,
   ExploreIcon,
