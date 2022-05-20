@@ -109,7 +109,7 @@ export function CreatePost() {
       </div>
       {selectedImage !== null && (
         <div className="relative">
-          <img src={selectedImage} alt="" className="w-full h-80 pr-4 pl-4" />
+          <img src={selectedImage} alt="userSelectedImage" className="w-full h-80 pr-4 pl-4" />
           <p
             className="absolute text-gray-700 top-0 right-0 mr-5 font-semibold cursor-pointer"
             onClick={() => setSelectedImage(null)}

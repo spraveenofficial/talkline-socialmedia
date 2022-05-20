@@ -35,6 +35,7 @@ export function Promotion() {
         <img
           src="https://www.digitalocean.com/_next/static/media/cloudJourneyImage.954519ea.svg"
           className="absolute bottom-0 right-0"
+          alt="promotion"
         />
       </div>
     </div>
