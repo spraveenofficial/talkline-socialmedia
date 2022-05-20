@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Button, Toast } from "../../Components";
 import { motion } from "framer-motion";
+import { useDispatch, useSelector } from "react-redux";
+import { verifyOtp } from "../../Redux/Actions";
 import { animation } from "../../Utils/animation";
 export function Otp({ onBack, onNext }) {
   const [otp, setOtp] = useState({
@@ -9,6 +11,9 @@ export function Otp({ onBack, onNext }) {
     3: "",
     4: "",
   });
+  const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.signup);
+  const { loading, success, message } = useSelector((state) => state.verifyOtp);
   const handleOtpChange = (e) => {
     const { name, value } = e.target;
     setOtp((prev) => ({
@@ -18,7 +23,12 @@ export function Otp({ onBack, onNext }) {
   };
   const enTeredOtp = Object.values(otp).join("");
   const handleVerifyOtp = async () => {
-    return onNext();
+    const response = await dispatch(
+      verifyOtp({ otp: enTeredOtp, hash: user.hash, email: user.email })
+    );
+    if (response) {
+      return onNext();
+    }
   };
   return (
     <motion.div
@@ -28,6 +38,9 @@ export function Otp({ onBack, onNext }) {
       exit="hidden"
       className="flex flex-col items-center justify-center h-full w-80 max-w-sm mobile:max-w-full mobile:p-10 mobile:w-full"
     >
+      {message && !loading && !success && (
+        <Toast message={message} success={success} />
+      )}
       <div className="w-full max-w-sm">
         <div className="bg-white ">
           <div onClick={() => onBack()} className="justify-items-start">
@@ -35,10 +48,10 @@ export function Otp({ onBack, onNext }) {
           </div>
           <div className="mb-4">
             <h1 className="text-gray-800 font-bold text-2xl mb-1">
-              Hi, test Verify your account
+              Hi, {user.name} Verify your account
             </h1>
             <p className="text-sm font-normal text-gray-600 mb-5">
-              Enter the OTP sent to your email demo.
+              Enter the OTP sent to your email {user.email}.
             </p>
           </div>
           <div className="container">
@@ -80,7 +93,9 @@ export function Otp({ onBack, onNext }) {
               Resend OTP
               <i className="fa fa-caret-right ml-2"></i>
             </button>
-            <Button onClick={handleVerifyOtp}>Verify</Button>
+            <Button loading={loading} onClick={handleVerifyOtp}>
+              {loading ? "Verifying..." : "Verify"}
+            </Button>
           </div>
         </div>
       </div>

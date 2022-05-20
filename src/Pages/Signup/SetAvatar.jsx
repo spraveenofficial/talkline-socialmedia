@@ -1,10 +1,17 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Button, Toast } from "../../Components";
+import { setProfile } from "../../Redux/Actions/auth-actions";
+import { verifyUser } from "../../Redux/Actions";
 import { animation } from "../../Utils/animation";
 export function SetAvatar({ onBack }) {
   const [image, setImage] = useState("/images/monkey-avatar.png");
   const isButtonDisabled = image === "/images/monkey-avatar.png";
+  const dispatch = useDispatch();
+  const { loading, success, message } = useSelector(
+    (state) => state.uploadAvatar
+  );
   const handleAvatar = (e) => {
     const file = e.target.files[0];
     const reader = new FileReader();
@@ -12,6 +19,15 @@ export function SetAvatar({ onBack }) {
     reader.onloadend = function () {
       setImage(reader.result);
     };
+  };
+  const handleUploadAvatar = async () => {
+    const response = await dispatch(setProfile({ avatar: image }));
+    if (response) {
+      return dispatch(verifyUser());
+    }
+  };
+  const handleSkipAvatar = () => {
+    dispatch(verifyUser());
   };
   return (
     <motion.div
@@ -21,6 +37,7 @@ export function SetAvatar({ onBack }) {
       exit="hidden"
       className="flex flex-col items-center justify-center h-full w-80 max-w-sm mobile:max-w-full mobile:p-10 mobile:w-full"
     >
+      {message && !success && <Toast message={message} success={success} />}
       <div className="w-full max-w-sm">
         <div className="bg-white">
           <div onClick={() => onBack()} className="justify-items-start">
@@ -46,13 +63,13 @@ export function SetAvatar({ onBack }) {
             </div>
             <Button
               disabled={isButtonDisabled}
-              //   loading={loading}
-              //   onClick={() => handleUploadAvatar()}
+              loading={loading}
+              onClick={() => handleUploadAvatar()}
             >
-              Upload
+              {loading ? "Uploading..." : "Upload"}
             </Button>
             <button
-              //   onClick={() => handleSkipAvatar()}
+              onClick={() => handleSkipAvatar()}
               className="block flex w-full justify-center bg-red-600 mt-4 py-2 rounded-2xl text-white font-semibold mb-2"
             >
               Skip
