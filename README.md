@@ -1,8 +1,6 @@
 
 <div align="center">
 
-<h1>Talkine</h1>
-  
 # Talkline
 
 ### Talkline is Social Media Application for users which can be used to communicate with each other. It is a simple and easy to use application which can be used to communicate with each other in Realtime. 
