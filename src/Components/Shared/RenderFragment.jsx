@@ -1,14 +1,16 @@
-import { CreatePost, RightSidebar, Sidebar } from "..";
+import { Sidebar } from "..";
+import { CreatePost, RightSidebar } from "..";
 import {
   Explore,
+  Home,
+  Message,
   Notification,
-  Bookmark,
-  Post,
   Profile,
   UserProfile,
+  Post,
   Setting,
+  Bookmark,
 } from "../../Pages";
-
 const HomeComponent = () => (
   <div className="flex relative h-full mobile:flex-col">
     <Sidebar />
@@ -17,37 +19,6 @@ const HomeComponent = () => (
   </div>
 );
 
-const ExploreComponent = () => (
-  <div className="flex relative h-full mobile:flex-col">
-    <Sidebar />
-    <Explore />
-    <RightSidebar />
-  </div>
-);
-
-const NotificationComponent = () => (
-  <div className="flex relative h-full mobile:flex-col">
-    <Sidebar />
-    <Notification />
-    <RightSidebar />
-  </div>
-);
-
-const BookMarkComponent = () => (
-  <div className="flex relative h-full mobile:flex-col">
-    <Sidebar />
-    <Bookmark />
-    <RightSidebar />
-  </div>
-);
-
-const PostComponent = () => (
-  <div className="flex relative h-full mobile:flex-col">
-    <Sidebar />
-    <Post />
-    <RightSidebar />
-  </div>
-);
 const ProfileComponent = () => (
   <div className="flex relative h-full mobile:flex-col">
     <Sidebar />
@@ -63,6 +34,39 @@ const UserProfileComponent = () => (
     <RightSidebar />
   </div>
 );
+
+const NotificationComponent = () => (
+  <div className="flex relative h-full mobile:flex-col">
+    <Sidebar />
+    <Notification />
+    <RightSidebar />
+  </div>
+);
+
+const ExploreComponent = () => (
+  <div className="flex relative h-full mobile:flex-col">
+    <Sidebar />
+    <Explore />
+    <RightSidebar />
+  </div>
+);
+
+const MessageComponent = () => (
+  <div className="flex relative h-full mobile:flex-col">
+    <Sidebar />
+    <Message />
+    <RightSidebar />
+  </div>
+);
+
+const PostComponent = () => (
+  <div className="flex relative h-full mobile:flex-col">
+    <Sidebar />
+    <Post />
+    <RightSidebar />
+  </div>
+);
+
 const SettingComponent = () => (
   <div className="flex relative h-full mobile:flex-col">
     <Sidebar />
@@ -70,13 +74,22 @@ const SettingComponent = () => (
     <RightSidebar />
   </div>
 );
+
+const BookMarkComponent = () => (
+  <div className="flex relative h-full mobile:flex-col">
+    <Sidebar />
+    <Bookmark />
+    <RightSidebar />
+  </div>
+);
 export {
-  BookMarkComponent,
   HomeComponent,
-  ExploreComponent,
-  NotificationComponent,
-  PostComponent,
-  SettingComponent,
   ProfileComponent,
   UserProfileComponent,
+  NotificationComponent,
+  ExploreComponent,
+  MessageComponent,
+  PostComponent,
+  SettingComponent,
+  BookMarkComponent,
 };

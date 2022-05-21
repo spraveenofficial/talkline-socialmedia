@@ -4,13 +4,14 @@ import { Signup, Login, Error } from "./Pages";
 import {
   Navbar,
   HomeComponent,
-  ExploreComponent,
-  NotificationComponent,
-  BookMarkComponent,
-  PostComponent,
   ProfileComponent,
   UserProfileComponent,
+  NotificationComponent,
+  ExploreComponent,
+  MessageComponent,
+  PostComponent,
   SettingComponent,
+  BookMarkComponent,
 } from "./Components";
 import { GuestRoutes, ProtectedRoutes } from "./Utils/routes";
 import { verifyUser } from "./Redux/Actions";
@@ -41,16 +42,17 @@ function App() {
     <Router>
       <Navbar />
       <Routes>
-        <Route path="*" element={<Error />} />
         <Route element={<ProtectedRoutes />}>
           <Route path="/" element={<HomeComponent />} />
-          <Route path="explore" element={<ExploreComponent />} />
-          <Route path="notification" element={<NotificationComponent />} />
-          <Route path="bookmarks" element={<BookMarkComponent />} />
-          <Route path="post/:postId" element={<PostComponent />} />
+          <Route path="*" element={<Error />} />
           <Route path="profile" element={<ProfileComponent />} />
           <Route path="/user/:id" element={<UserProfileComponent />} />
+          <Route path="notification" element={<NotificationComponent />} />
+          <Route path="explore" element={<ExploreComponent />} />
+          <Route path="messages" element={<MessageComponent />} />
+          <Route path="post/:postId" element={<PostComponent />} />
           <Route path="setting" element={<SettingComponent />} />
+          <Route path="bookmarks" element={<BookMarkComponent />} />
         </Route>
         <Route element={<GuestRoutes />}>
           <Route path="signup" element={<Signup />} />

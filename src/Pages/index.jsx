@@ -9,3 +9,4 @@ export { Post } from "./Post";
 export { Profile } from "./Profile";
 export { UserProfile } from "./Profile/other-profile";
 export { Setting } from "./Settings";
+export { Message } from "./Messages";

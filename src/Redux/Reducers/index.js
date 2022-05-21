@@ -2,7 +2,8 @@ import { combineReducers } from "redux";
 import { auth, signup, verifyOtp, uploadAvatar, login } from "./auth-reducers";
 import { profile, explore, myprofile } from "./profile-reducers";
 import { newPost, feed, post, bookmark } from "./post-reducers";
-import { notification } from "./notification-reducer";
+import { notification } from "./notification-reducers";
+import { message } from "./message-reducers";
 
 export default combineReducers({
   auth,
@@ -18,4 +19,5 @@ export default combineReducers({
   post,
   bookmark,
   notification,
+  message,
 });

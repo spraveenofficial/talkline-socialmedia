@@ -31,3 +31,9 @@ export {
 } from "./post-actions";
 
 export { fetchNotification, markAsSeen } from "./notification-actions";
+
+export {
+  fetchChat,
+  sendMessage,
+  getMessageNotification,
+} from "./message-actions";
